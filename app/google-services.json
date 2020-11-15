@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "919210659891",
+    "firebase_url": "https://streamy-f80c6.firebaseio.com",
+    "project_id": "streamy-f80c6",
+    "storage_bucket": "streamy-f80c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919210659891:android:755a60c69c01e8551ad346",
+        "android_client_info": {
+          "package_name": "com.arjun.streamy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919210659891-85a3b0k99k8eb6a62k3l6mdncao80blh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChlhHg_QN60rtf3Eiagv68oNA2LC4Rw78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919210659891-85a3b0k99k8eb6a62k3l6mdncao80blh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
