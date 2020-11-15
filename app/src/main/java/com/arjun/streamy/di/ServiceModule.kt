@@ -1,6 +1,7 @@
 package com.arjun.streamy.di
 
 import android.content.Context
+import com.arjun.streamy.data.remote.MusicDatabase
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
@@ -38,4 +39,8 @@ object ServiceModule {
     fun provideDataSourceFactory(
         @ApplicationContext context: Context
     ) = DefaultDataSourceFactory(context, Util.getUserAgent(context, "streamy"))
+
+    @ServiceScoped
+    @Provides
+    fun provideMusicDatabase() = MusicDatabase
 }
