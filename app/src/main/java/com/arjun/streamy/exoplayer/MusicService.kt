@@ -147,9 +147,9 @@ class MusicService : MediaBrowserServiceCompat() {
 
                             isPlayerInitialized = true
 
-                        } else {
-                            result.sendResult(null)
                         }
+                    } else {
+                        result.sendResult(null)
                     }
                 }
 
