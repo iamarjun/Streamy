@@ -1,7 +1,7 @@
 package com.arjun.streamy.data.remote
 
-import com.arjun.streamy.data.Constants.SONG_COLLECTION
 import com.arjun.streamy.data.entities.Song
+import com.arjun.streamy.util.Constants.SONG_COLLECTION
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 

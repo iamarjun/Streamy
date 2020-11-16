@@ -3,8 +3,8 @@ package com.arjun.streamy.exoplayer.callbacks
 import android.app.Notification
 import android.content.Intent
 import androidx.core.content.ContextCompat
-import com.arjun.streamy.data.Constants.NOTIFICATION_ID
 import com.arjun.streamy.exoplayer.MusicService
+import com.arjun.streamy.util.Constants.NOTIFICATION_ID
 import com.google.android.exoplayer2.ui.PlayerNotificationManager
 
 class MusicPlayerNotificationListener(private val musicService: MusicService) :

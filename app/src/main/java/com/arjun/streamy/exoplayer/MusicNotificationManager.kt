@@ -7,8 +7,8 @@ import android.graphics.drawable.Drawable
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.MediaSessionCompat
 import com.arjun.streamy.R
-import com.arjun.streamy.data.Constants.NOTIFICATION_CHANNEL_ID
-import com.arjun.streamy.data.Constants.NOTIFICATION_ID
+import com.arjun.streamy.util.Constants.NOTIFICATION_CHANNEL_ID
+import com.arjun.streamy.util.Constants.NOTIFICATION_ID
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
