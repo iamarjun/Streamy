@@ -2,6 +2,7 @@ package com.arjun.streamy.di
 
 import android.content.Context
 import com.arjun.streamy.R
+import com.arjun.streamy.exoplayer.MusicServiceConnection
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -27,4 +28,10 @@ object AppModule {
                     DiskCacheStrategy.DATA
                 )
         )
+
+
+    @Provides
+    @Singleton
+    fun provideMusicServiceConnection(@ApplicationContext context: Context) =
+        MusicServiceConnection(context)
 }
