@@ -1,17 +1,13 @@
-package com.arjun.streamy.ui.home
+package com.arjun.streamy.ui
 
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.RecyclerView
 import com.arjun.streamy.R
 import com.arjun.streamy.base.BaseSongAdapter
 import com.arjun.streamy.data.entities.Song
-import com.bumptech.glide.RequestManager
-import kotlinx.android.synthetic.main.list_item.view.*
-import javax.inject.Inject
+import kotlinx.android.synthetic.main.swipe_item.view.*
 
-class SongAdapter @Inject constructor(
-    private val glide: RequestManager,
-) : BaseSongAdapter(R.layout.list_item) {
+class SwipeSongAdapter : BaseSongAdapter(R.layout.swipe_item) {
 
     override val differ: AsyncListDiffer<Song>
         get() = AsyncListDiffer(this, itemCallback)
@@ -22,9 +18,7 @@ class SongAdapter @Inject constructor(
         when (holder) {
             is SongViewHolder -> {
                 holder.itemView.apply {
-                    tvPrimary.text = item.title
-                    tvSecondary.text = item.artist
-                    glide.load(item.albumArt).into(ivItemImage)
+                    tvPrimary.text = "${item.title} - ${item.artist}"
 
                     setOnClickListener {
                         onItemClickListener?.let {
