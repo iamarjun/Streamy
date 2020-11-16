@@ -12,6 +12,7 @@ import com.arjun.streamy.exoplayer.callbacks.MusicPlaybackPreparer
 import com.arjun.streamy.exoplayer.callbacks.MusicPlayerEventListener
 import com.arjun.streamy.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.arjun.streamy.util.Constants.MEDIA_ROOT_ID
+import com.arjun.streamy.util.Constants.NETWORK_ERROR
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
@@ -152,8 +153,10 @@ class MusicService : MediaBrowserServiceCompat() {
                     }
                 }
 
-                if (!resultSent)
+                if (!resultSent) {
+                    mediaSession.sendSessionEvent(NETWORK_ERROR, null)
                     result.detach()
+                }
             }
         }
     }
