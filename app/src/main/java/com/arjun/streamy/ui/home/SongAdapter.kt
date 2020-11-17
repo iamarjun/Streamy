@@ -13,9 +13,7 @@ class SongAdapter @Inject constructor(
     private val glide: RequestManager,
 ) : BaseSongAdapter(R.layout.list_item) {
 
-    override val differ: AsyncListDiffer<Song>
-        get() = AsyncListDiffer(this, itemCallback)
-
+    override val differ: AsyncListDiffer<Song> = AsyncListDiffer(this, itemCallback)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = songs[position]

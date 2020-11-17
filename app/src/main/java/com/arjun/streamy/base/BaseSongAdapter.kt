@@ -17,6 +17,9 @@ abstract class BaseSongAdapter(private val redId: Int) :
         get() = differ.currentList
         set(value) = differ.submitList(value)
 
+    fun setItemClickListener(listener: (Song) -> Unit) {
+        onItemClickListener = listener
+    }
 
     protected val itemCallback = object : DiffUtil.ItemCallback<Song>() {
 
@@ -27,11 +30,9 @@ abstract class BaseSongAdapter(private val redId: Int) :
         override fun areContentsTheSame(oldItem: Song, newItem: Song): Boolean {
             return oldItem.hashCode() == newItem.hashCode()
         }
-
     }
 
     protected abstract val differ: AsyncListDiffer<Song>
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
@@ -44,6 +45,7 @@ abstract class BaseSongAdapter(private val redId: Int) :
         return differ.currentList.size
     }
 
-    class SongViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView)
+    protected inner class SongViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView)
 }
 

@@ -6,12 +6,11 @@ import com.arjun.streamy.R
 import com.arjun.streamy.base.BaseSongAdapter
 import com.arjun.streamy.data.entities.Song
 import kotlinx.android.synthetic.main.swipe_item.view.*
+import javax.inject.Inject
 
-class SwipeSongAdapter : BaseSongAdapter(R.layout.swipe_item) {
+class SwipeSongAdapter @Inject constructor() : BaseSongAdapter(R.layout.swipe_item) {
 
-    override val differ: AsyncListDiffer<Song>
-        get() = AsyncListDiffer(this, itemCallback)
-
+    override val differ: AsyncListDiffer<Song> = AsyncListDiffer(this, itemCallback)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = songs[position]

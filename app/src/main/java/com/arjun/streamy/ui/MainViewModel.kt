@@ -1,9 +1,7 @@
 package com.arjun.streamy.ui
 
 import android.support.v4.media.MediaBrowserCompat
-import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.MediaMetadataCompat.METADATA_KEY_MEDIA_ID
-import android.support.v4.media.session.PlaybackStateCompat
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import com.arjun.streamy.data.entities.Song
@@ -23,18 +21,10 @@ class MainViewModel @ViewModelInject constructor(private val musicServiceConnect
     val mediaItems: StateFlow<Resource<List<Song>>>
         get() = _mediaItems
 
-    val isConnected: StateFlow<Resource<Boolean>>
-        get() = musicServiceConnection.isConnected
-
-    val networkError: StateFlow<Resource<Boolean>>
-        get() = musicServiceConnection.networkError
-
-    val playbackState: StateFlow<PlaybackStateCompat?>
-        get() = musicServiceConnection.playbackState
-
-    val currentPlayingSong: StateFlow<MediaMetadataCompat?>
-        get() = musicServiceConnection.currentPlayingSong
-
+    val isConnected = musicServiceConnection.isConnected
+    val networkError = musicServiceConnection.networkError
+    val playbackState = musicServiceConnection.playbackState
+    val currentPlayingSong = musicServiceConnection.currentPlayingSong
 
     init {
         musicServiceConnection.subscribe(

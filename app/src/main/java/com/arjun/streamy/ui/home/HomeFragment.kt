@@ -47,7 +47,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
-        songAdapter.setOnItemClickListener {
+        songAdapter.setItemClickListener {
             viewModel.playOrToggle(it)
         }
 
