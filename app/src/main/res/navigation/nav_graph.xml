@@ -10,5 +10,14 @@
         android:name="com.arjun.streamy.ui.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" />
+    <fragment
+        android:id="@+id/songFragment"
+        android:name="com.arjun.streamy.ui.detail.SongFragment"
+        android:label="song_fragment"
+        tools:layout="@layout/song_fragment" />
+
+    <action
+        android:id="@+id/globalActionToSongFragment"
+        app:destination="@id/songFragment" />
 
 </navigation>

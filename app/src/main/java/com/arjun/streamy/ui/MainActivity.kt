@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.support.v4.media.session.PlaybackStateCompat
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import com.arjun.streamy.R
 import com.arjun.streamy.data.entities.Song
@@ -54,6 +56,22 @@ class MainActivity : AppCompatActivity() {
                     currentPlayingSong = swipeSongAdapter.songs[position]
             }
         })
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.homeFragment -> showBottomBar()
+                R.id.songFragment -> hideBottomBar()
+                else -> showBottomBar()
+            }
+        }
+
+        swipeSongAdapter.setItemClickListener {
+            navController.navigate(R.id.globalActionToSongFragment)
+        }
 
         lifecycleScope.launchWhenStarted {
             viewModel.mediaItems.collect {
@@ -119,6 +137,18 @@ class MainActivity : AppCompatActivity() {
                 switchViewPagerToCurrentSong(currentPlayingSong ?: return@collect)
             }
         }
+    }
+
+    private fun hideBottomBar() {
+        ivCurSongImage.isVisible = false
+        vpSong.isVisible = false
+        ivPlayPause.isVisible = false
+    }
+
+    private fun showBottomBar() {
+        ivCurSongImage.isVisible = true
+        vpSong.isVisible = true
+        ivPlayPause.isVisible = true
     }
 
     private fun switchViewPagerToCurrentSong(song: Song) {
