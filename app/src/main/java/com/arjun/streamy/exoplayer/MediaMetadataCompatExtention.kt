@@ -6,11 +6,11 @@ import com.arjun.streamy.data.entities.Song
 fun MediaMetadataCompat.toSong(): Song? {
     return description?.let {
         Song(
-            id = it.mediaId?.toInt() ?: -1,
+            id = it.mediaId.toString(),
             title = it.title.toString(),
             artist = it.subtitle.toString(),
-            albumArt = it.mediaUri.toString(),
-            icon = it.iconUri.toString()
+            songUrl = it.mediaUri.toString(),
+            albumArt = it.iconUri.toString(),
         )
     }
 }

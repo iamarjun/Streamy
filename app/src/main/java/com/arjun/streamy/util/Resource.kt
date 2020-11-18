@@ -1,7 +1,7 @@
 package com.arjun.streamy.util
 
 sealed class Resource<out T : Any> {
+    data class Success<out T : Any>(val data: T) : Resource<T>()
+    data class Error(val exception: Throwable) : Resource<Nothing>()
     object Loading : Resource<Nothing>()
-    data class Success<out T : Any>(val data: Any) : Resource<T>()
-    data class Error(val e: Exception) : Resource<Nothing>()
 }

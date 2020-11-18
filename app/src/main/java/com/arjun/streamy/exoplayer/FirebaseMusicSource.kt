@@ -8,7 +8,6 @@ import android.support.v4.media.MediaMetadataCompat.*
 import androidx.core.net.toUri
 import com.arjun.streamy.data.remote.MusicDatabase
 import com.arjun.streamy.exoplayer.State.*
-import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.source.ConcatenatingMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -28,10 +27,10 @@ class FirebaseMusicSource @Inject constructor(private val musicDatabase: MusicDa
             MediaMetadataCompat
                 .Builder()
                 .putString(METADATA_KEY_ARTIST, song.artist)
-                .putString(METADATA_KEY_MEDIA_ID, song.id.toString())
+                .putString(METADATA_KEY_MEDIA_ID, song.id)
                 .putString(METADATA_KEY_TITLE, song.title)
                 .putString(METADATA_KEY_DISPLAY_TITLE, song.title)
-                .putString(METADATA_KEY_DISPLAY_ICON_URI, song.icon)
+                .putString(METADATA_KEY_DISPLAY_ICON_URI, song.albumArt)
                 .putString(METADATA_KEY_MEDIA_URI, song.songUrl)
                 .putString(METADATA_KEY_ALBUM_ART_URI, song.albumArt)
                 .putString(METADATA_KEY_DISPLAY_SUBTITLE, song.artist)
@@ -47,11 +46,7 @@ class FirebaseMusicSource @Inject constructor(private val musicDatabase: MusicDa
 
         songs.forEach { song ->
             val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-                .createMediaSource(
-                    MediaItem.fromUri(
-                        song.getString(METADATA_KEY_MEDIA_URI).toUri()
-                    )
-                )
+                .createMediaSource(song.getString(METADATA_KEY_MEDIA_URI).toUri())
 
             concatenatingMediaSource.addMediaSource(mediaSource)
         }

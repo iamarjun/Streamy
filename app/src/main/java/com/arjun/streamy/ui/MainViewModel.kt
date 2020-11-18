@@ -38,12 +38,11 @@ class MainViewModel @ViewModelInject constructor(private val musicServiceConnect
 
                     val items = children.map {
                         Song(
-                            id = it.mediaId?.toInt() ?: -1,
+                            id = it.mediaId.toString(),
                             title = it.description.title.toString(),
                             artist = it.description.subtitle.toString(),
                             songUrl = it.description.mediaUri.toString(),
-                            albumArt = it.description.mediaUri.toString(),
-                            icon = it.description.iconUri.toString()
+                            albumArt = it.description.iconUri.toString(),
                         )
                     }
 
@@ -68,7 +67,7 @@ class MainViewModel @ViewModelInject constructor(private val musicServiceConnect
         val isPrepared = playbackState.value?.isPrepared ?: false
 
         if (isPrepared &&
-            mediaItem.id.toString() == currentPlayingSong.value?.getString(METADATA_KEY_MEDIA_ID)
+            mediaItem.id == currentPlayingSong.value?.getString(METADATA_KEY_MEDIA_ID)
         ) {
             playbackState.value?.let {
                 when {
@@ -79,7 +78,7 @@ class MainViewModel @ViewModelInject constructor(private val musicServiceConnect
             }
 
         } else {
-            musicServiceConnection.transportControls.playFromMediaId(mediaItem.id.toString(), null)
+            musicServiceConnection.transportControls.playFromMediaId(mediaItem.id, null)
         }
     }
 

@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                 when (it) {
                     Resource.Loading -> Unit
                     is Resource.Success -> {
-                        swipeSongAdapter.songs = it.data as List<Song>
+                        swipeSongAdapter.songs = it.data
                         if (it.data.isNotEmpty())
                             glide.load((currentPlayingSong ?: it.data[0]).albumArt)
                                 .into(ivCurSongImage)
@@ -48,20 +48,16 @@ class MainActivity : AppCompatActivity() {
                     is Resource.Error -> Unit
                 }
             }
-
-
-            viewModel.currentPlayingSong.collect {
-                it?.let {
-                    currentPlayingSong = it.toSong()
-                    glide.load(currentPlayingSong?.albumArt)
-                        .into(ivCurSongImage)
-                    switchViewPagerToCurrentSong(currentPlayingSong ?: return@collect)
-                } ?: run {
-                    return@collect
-                }
-            }
-
         }
+
+        viewModel.currentPlayingSong.observe(this) {
+            if (it == null) return@observe
+
+            currentPlayingSong = it.toSong()
+            glide.load(currentPlayingSong?.albumArt).into(ivCurSongImage)
+            switchViewPagerToCurrentSong(currentPlayingSong ?: return@observe)
+        }
+
     }
 
     private fun switchViewPagerToCurrentSong(song: Song) {
