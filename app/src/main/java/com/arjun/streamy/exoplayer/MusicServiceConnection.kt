@@ -7,8 +7,6 @@ import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.session.MediaControllerCompat
 import android.support.v4.media.session.PlaybackStateCompat
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.arjun.streamy.util.Constants.NETWORK_ERROR
 import com.arjun.streamy.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -26,8 +24,8 @@ class MusicServiceConnection(context: Context) {
     private val _playbackState = MutableStateFlow<PlaybackStateCompat?>(null)
     val playbackState: StateFlow<PlaybackStateCompat?> = _playbackState
 
-    private val _currentPlayingSong = MutableLiveData<MediaMetadataCompat?>()
-    val currentPlayingSong: LiveData<MediaMetadataCompat?> = _currentPlayingSong
+    private val _currentPlayingSong = MutableStateFlow<MediaMetadataCompat?>(null)
+    val currentPlayingSong: StateFlow<MediaMetadataCompat?> = _currentPlayingSong
 
     lateinit var mediaController: MediaControllerCompat
 
@@ -59,7 +57,7 @@ class MusicServiceConnection(context: Context) {
         }
 
         override fun onMetadataChanged(metadata: MediaMetadataCompat?) {
-            _currentPlayingSong.postValue(metadata)
+            _currentPlayingSong.value = (metadata)
         }
 
         override fun onSessionEvent(event: String?, extras: Bundle?) {
