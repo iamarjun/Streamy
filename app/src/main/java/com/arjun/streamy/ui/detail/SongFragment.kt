@@ -16,7 +16,6 @@ import com.arjun.streamy.ui.MainViewModel
 import com.arjun.streamy.util.Resource
 import com.bumptech.glide.RequestManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_song.*
 import kotlinx.coroutines.flow.collect
 import java.text.SimpleDateFormat
@@ -102,7 +101,7 @@ class SongFragment : Fragment(R.layout.fragment_song) {
         lifecycleScope.launchWhenStarted {
             mainViewModel.playbackState.collect {
                 playbackState = it
-                ivPlayPause.setImageResource(
+                ivPlayPauseDetail.setImageResource(
                     if (playbackState?.isPlaying == true) R.drawable.ic_pause else R.drawable.ic_play
                 )
 

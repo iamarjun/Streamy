@@ -49,6 +49,7 @@ class MusicNotificationManager(
     private inner class DescriptionAdapter(private val mediaController: MediaControllerCompat) :
         PlayerNotificationManager.MediaDescriptionAdapter {
         override fun getCurrentContentTitle(player: Player): CharSequence {
+            newSongCallbacks()
             return mediaController.metadata.description.title.toString()
         }
 

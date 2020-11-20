@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.arjun.streamy.exoplayer.MusicService
 import com.arjun.streamy.exoplayer.MusicServiceConnection
 import com.arjun.streamy.exoplayer.currentPlaybackPosition
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -34,6 +35,8 @@ class SongViewModel @ViewModelInject constructor(musicServiceConnection: MusicSe
                         _currentSongDuration.value = MusicService.currentSongDuration
                     }
                 }
+
+                delay(1000)
             }
         }
     }
